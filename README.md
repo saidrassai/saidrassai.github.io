@@ -1,3 +1,4 @@
 # saidrassai.github.io
 
-Personal site of Rassai Said. Notes on finance agents, dataset engineering, and model training.
+Personal space of Rassai Said.  
+Inspired by: [nreHieW/rehiew.github.io](https://github.com/nreHieW/rehiew.github.io)
