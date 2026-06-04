@@ -6,6 +6,7 @@ Inspired by: [nreHieW/rehiew.github.io](https://github.com/nreHieW/rehiew.github
 ## Development
 ```bash
 hugo server -D
+hugo server --ignoreCache --disableFastRender --environment development
 ```
 
 ## Production
