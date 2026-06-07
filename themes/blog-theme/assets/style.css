@@ -802,7 +802,7 @@ h2 {
   font-family: Georgia, "Times New Roman", Times, serif;
   line-height: 1.2;
   letter-spacing: 0.2px;
-  color: #002bff;
+  color: #202020;
   padding-left: 0;
   scroll-margin-top: 1.25rem;
 }
@@ -1526,12 +1526,12 @@ details:not([open]) > summary {
 }
 
 .toc-sidebar a:hover {
-  color: #1e82f3;
+  color: #e11d47;
   text-decoration: underline;
 }
 
 .toc-sidebar a.active {
-  color: #002bff;
+  color: #dc2626;
   font-weight: 600;
   text-decoration: underline;
 }

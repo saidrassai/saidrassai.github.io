@@ -11,7 +11,7 @@ hugo server --ignoreCache --disableFastRender --environment development
 
 ## Production
 ```bash
-hugo -gc --minify --baseURL "https://nrehiew.github.io/blog/"
+hugo -gc --minify --baseURL "https://saidrassai.github.io/blog/"
 ```
 
 ## CSS
