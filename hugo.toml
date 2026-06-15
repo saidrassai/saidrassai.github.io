@@ -18,9 +18,9 @@ googleAnalytics = "G-PCNGEYW1TG"
           inline = [['\(', '\)'], ['$', '$']]
       unsafe = true
   [markup.tableOfContents]
-    startLevel = 1
+    startLevel = 2
     ordered = true
-    endLevel = 4
+    endLevel = 3
 
 [markup.goldmark.renderer]
 unsafe = true

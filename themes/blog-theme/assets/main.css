@@ -599,84 +599,137 @@ details:not([open]) > summary {
 /* --- Post layout with left TOC sidebar (Fixed & Expanded) --- */
 .post-layout {
   display: grid;
-  /* First column handles the TOC (240px), second column dynamically scales up to a perfect 760px reading width */
-  grid-template-columns: 240px minmax(0, 760px);
-  gap: 50px;
+  grid-template-columns: 260px minmax(0, 760px);
+  gap: 64px;
   align-items: start;
-  
-  /* Expands the max-width of the entire page layout so everything can breathe */
-  max-width: 1050px; 
-  margin: 0 auto;    /* Centers the entire layout on the screen */
+  max-width: 1120px;
+  margin: 0 auto;
   padding: 0 1.5rem;
 }
 
 .toc-sidebar {
   position: sticky;
-  top: 2.5rem; /* Pins the TOC vertically to the viewport as your reader scrolls down */
-  width: 240px;
-  color: #6E6D80;
-  font-size: 0.95rem;
-  max-height: calc(100vh - 5rem);
+  top: 3rem;
+  width: 260px;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: #6b7280;
+  max-height: calc(100vh - 5.5rem);
   overflow-y: auto;
+  padding: 1rem 0 1.5rem;
+  border-right: 1px solid rgba(0, 0, 0, 0.04);
 }
 
-/* Remove vertical rule and reduce indentation inside sidebar TOC */
+/* Custom scrollbar for TOC */
+.toc-sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+.toc-sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.toc-sidebar::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.12);
+  border-radius: 3px;
+}
+.toc-sidebar::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+/* TOC root list */
 .toc-sidebar #TableOfContents {
   border-left: none !important;
-  padding: 0 !important; /* aligns top of TOC perfectly with your first paragraph */
+  padding: 0 !important;
+  margin: 0;
 }
 .toc-sidebar #TableOfContents > ul {
   margin: 0;
   padding-left: 0;
 }
-.toc-sidebar #TableOfContents ul ul {
-  margin-left: 12px !important; /* Clean, nested hierarchy indentation */
-  padding-left: 0;
+
+/* Top-level items */
+.toc-sidebar #TableOfContents > ul > li {
+  margin: 0.125rem 0;
 }
-.toc-sidebar #TableOfContents li {
-  margin: 0.35rem 0; 
-}
-/* Add more separation between top-level sections (headers) */
-.toc-sidebar #TableOfContents > ul > li + li {
-  margin-top: 0.8rem;
-}
-/* Tighter line-height for TOC links */
-.toc-sidebar #TableOfContents a {
+.toc-sidebar #TableOfContents > ul > li > a {
   display: block;
-  line-height: 1.2;
+  padding: 0.375rem 0.5rem 0.375rem 0;
+  border-radius: 4px;
+  color: #374151;
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  text-decoration: none;
+  transition: color 0.15s ease, background-color 0.15s ease;
 }
-
-.toc-sidebar ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-
-.toc-sidebar li {
-  margin: 0.25rem 0;
-}
-
-.toc-sidebar a {
+.toc-sidebar #TableOfContents > ul > li > a:hover {
+  color: #111827;
+  background-color: rgba(0, 0, 0, 0.03);
   text-decoration: none;
 }
-
-.toc-sidebar a:hover {
-  color: #e11d47;
-  text-decoration: underline;
-}
-
-.toc-sidebar a.active {
-  color: #dc2626;
+.toc-sidebar #TableOfContents > ul > li > a.active {
+  color: #111827;
   font-weight: 600;
-  text-decoration: underline;
+  background-color: rgba(0, 0, 0, 0.04);
 }
 
+/* Add subtle left border indicator for active top-level item */
+.toc-sidebar #TableOfContents > ul > li > a.active::before {
+  content: "";
+  display: inline-block;
+  width: 3px;
+  height: 1.1em;
+  margin-right: 0.5rem;
+  vertical-align: middle;
+  background: #e11d47;
+  border-radius: 2px;
+}
+
+/* Nested lists */
+.toc-sidebar #TableOfContents ul ul {
+  margin: 0.25rem 0 0.25rem 0;
+  padding-left: 1rem;
+  border-left: 1px solid rgba(0, 0, 0, 0.04);
+}
+.toc-sidebar #TableOfContents ul ul li {
+  margin: 0.125rem 0;
+}
+.toc-sidebar #TableOfContents ul ul a {
+  display: block;
+  padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+  border-radius: 4px;
+  color: #6b7280;
+  font-weight: 400;
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  text-decoration: none;
+  transition: color 0.15s ease, background-color 0.15s ease, padding-left 0.15s ease;
+}
+.toc-sidebar #TableOfContents ul ul a:hover {
+  color: #374151;
+  background-color: rgba(0, 0, 0, 0.025);
+  padding-left: 0.75rem;
+  text-decoration: none;
+}
+.toc-sidebar #TableOfContents ul ul a.active {
+  color: #111827;
+  font-weight: 500;
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+/* Responsive: hide sidebar on tablet/mobile */
 @media (max-width: 1024px) {
   .post-layout {
-    display: block; /* Reverts to a clean, single column stack on smaller screens */
+    display: block;
   }
   .toc-sidebar {
-    display: none; /* Hides the sidebar gracefully on tablets/mobile devices */
+    display: none;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .toc-sidebar #TableOfContents a {
+    transition: none;
   }
 }
 
