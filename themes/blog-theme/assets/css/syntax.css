@@ -3,7 +3,7 @@
    is the whole theme. Structure (transparent background, hairline gutter) stays
    ours; only the token hues are GitHub's. */
 .chroma { color: #1f2328; background: transparent; }
-.chroma .err { color: var(--red); }
+.chroma .err { color: var(--green-deep); }
 .chroma .lntd { vertical-align: top; padding: 0; margin: 0; border: 0; }
 .chroma .lntable { border-spacing: 0; padding: 0; margin: 0; width: auto; overflow: auto; display: block; }
 .chroma .hl { display: block; width: 100%; background: rgba(13,13,13,.055); }
@@ -18,7 +18,7 @@
 .chroma .nl { color: #900; font-weight: 700; }
 .chroma .bp { color: #6a737d; }
 .chroma .c, .chroma .ch, .chroma .cm, .chroma .c1, .chroma .cs, .chroma .cp, .chroma .cpf { color: #57606a; font-style: italic; }
-.chroma .gd { color: var(--red); }
+.chroma .gd { color: var(--green-deep); }
 .chroma .gi { color: #116329; }
 .chroma .ge { font-style: italic; }
 .chroma .gs, .chroma .gu { font-weight: 700; }

@@ -41,7 +41,7 @@ document.querySelectorAll(".share-copy").forEach((el) => {
     active = current;
     links.forEach((a) => (a.style.color = ""));
     const link = byId.get(current.id);
-    if (link) link.style.color = "var(--red)";
+    if (link) link.style.color = "var(--green-deep)";
   };
   document.addEventListener("scroll", update, { passive: true });
   update();

@@ -13,7 +13,7 @@
      hairlines, so surplus slots would show as black. */}}
 {{ range $index, $page := first 7 site.RegularPages }}
   {{ if eq $index (mod (add 8 (mod (sub 0 (len site.RegularPages)) 4)) 4) }}<span class="plate-hole" aria-hidden="true"></span>{{ end }}
-  <a class="plate-cell" href="{{ $page.RelPermalink }}" style="--bar:{{ $page.Params.bar_color | default "#2f6f4f" }}">
+  <a class="plate-cell" href="{{ $page.RelPermalink }}" style="--bar:{{ $page.Params.bar_color | default "#0d5c38" }}">
     <span class="plate-art">
       <svg viewBox="0 0 588 420" width="588" height="420" role="img" aria-hidden="true">
         <rect x="0" y="0" width="588" height="420" fill="#fff"/>
@@ -23,7 +23,7 @@
         {{ with $page.Params.tech_meta }}
         <text x="44" y="220" font-family="'JetBrains Mono', 'SF Mono', monospace" font-size="11" letter-spacing="1.2" fill="#757575">{{ . | truncate 44 "" }}</text>
         {{ end }}
-        <text x="44" y="300" font-family="'JetBrains Mono', 'SF Mono', monospace" font-weight="700" font-size="15" letter-spacing="1.2" fill="#e30613">READ ARTICLE &rarr;</text>
+        <text x="44" y="300" font-family="'JetBrains Mono', 'SF Mono', monospace" font-weight="700" font-size="15" letter-spacing="1.2" fill="#0a8a48">READ ARTICLE &rarr;</text>
       </svg>
     </span>
     <span class="plate-cap">
@@ -37,7 +37,7 @@
 <section class="index-rows" aria-label="Article index">
   {{ range $index, $page := site.RegularPages }}
   <a class="index-row" href="{{ $page.RelPermalink }}">
-    <span class="row-bar" style="background:{{ $page.Params.bar_color | default "#2f6f4f" }}"></span>
+    <span class="row-bar" style="background:{{ $page.Params.bar_color | default "#0d5c38" }}"></span>
     <div class="row-body">
       <div class="row-top caps">
         <span class="row-no">{{ printf "%02d" (sub (len site.RegularPages) $index) }}</span>

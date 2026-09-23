@@ -6,11 +6,11 @@
   <h1>{{ if eq .Kind "term" }}{{ .Title }}{{ else }}All articles{{ end }}</h1>
   <div class="listing-count caps">{{ len $pages }} article{{ if ne (len $pages) 1 }}s{{ end }}</div>
 </header>
-<div class="listing-category-rule" style="background:{{ .Params.bar_color | default "#2f6f4f" }}"></div>
+<div class="listing-category-rule" style="background:{{ .Params.bar_color | default "#0d5c38" }}"></div>
 <section class="index-rows" aria-label="{{ .Title }} articles">
   {{ range $index, $page := $pages }}
   <a class="index-row" href="{{ $page.RelPermalink }}">
-    <span class="row-bar" style="background:{{ $page.Params.bar_color | default "#2f6f4f" }}"></span>
+    <span class="row-bar" style="background:{{ $page.Params.bar_color | default "#0d5c38" }}"></span>
     <div class="row-body">
       <div class="row-top caps">
         <span class="row-no">{{ printf "%02d" (sub (len $pages) $index) }}</span>
