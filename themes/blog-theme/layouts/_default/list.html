@@ -1,18 +1,5 @@
-<!DOCTYPE html>
-<html lang="{{ or site.Language.LanguageCode }}" dir="{{ or site.Language.LanguageDirection `ltr` }}">
-<head>
-  {{ partial "head.html" . }}
-</head>
-<body class="flex flex-col items-center ">
-  <div class="w-full max-w-2xl px-4">
-    {{ partial "header.html" . }}
-  <main>
+{{ define "main" }}
+  <div class="canac-blog-list">
     {{ partial "posts_list.html" . }}
-    
-  </main>
-  <footer class="border-t-2 text-xs pt-4 mt-10">
-    {{ partial "footer.html" . }}
-  </footer>
   </div>
-</body>
-</html>
+{{ end }}

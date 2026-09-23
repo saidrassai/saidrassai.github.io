@@ -1,5 +1,16 @@
-<div class="w-full flex justify-between">
-    <p>&copy; {{ now.Year }} Rassai Said. All rights reserved.</p>
-    <a class="text-xs text-center opacity-60 italic hover:underline hover:opacity-80"
-        href="https://github.com/saidrassai" target="_blank" rel="noopener noreferrer">github.com/saidrassai</a>
+<div class="canac-author-bio">
+  {{ with site.Params.author.avatar }}
+    <img src="{{ . }}" alt="avatar" class="canac-avatar">
+  {{ end }}
+  <div class="canac-author-info">
+    <div class="canac-author-name">{{ site.Params.author.name }}</div>
+    <div class="canac-author-desc">{{ site.Params.author.description }}</div>
+  </div>
+</div>
+
+<div class="canac-footer-bottom">
+  <span class="canac-permalink">
+    <a href="{{ .Permalink }}">Permalink</a>
+  </span>
+  <span class="canac-copyright">&copy; {{ now.Year }} {{ site.Params.author.name }}</span>
 </div>

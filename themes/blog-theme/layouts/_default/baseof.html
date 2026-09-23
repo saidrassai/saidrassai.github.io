@@ -6,16 +6,15 @@
     {{ partialCached "math.html" . }}
   {{ end }}
 </head>
-<body class="flex flex-col items-center">
-  <!-- 🚀 CHANGED FROM max-w-3xl TO max-w-6xl -->
-  <div class="w-full max-w-6xl px-5 sm:px-4">
+<body class="canac-body">
+  <div class="canac-container">
     {{ partial "header.html" . }}
-  <main class="w-full">
-    {{ block "main" . }}{{ end }}
-  </main>
-  <footer class="border-t-2 text-xs pt-4 mt-16">
-    {{ partial "footer.html" . }}
-  </footer>
+    <main class="canac-main">
+      {{ block "main" . }}{{ end }}
+    </main>
+    <footer class="canac-footer">
+      {{ partial "footer.html" . }}
+    </footer>
   </div>
 </body>
 </html>

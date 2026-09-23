@@ -1,8 +1,10 @@
 +++
 title = 'Building a Finance Agent and Dataset: From Research Note to Replication'
 date = 2026-06-02
+categories = ["LLM"]
 [params]
 subtitle = "Reconstructing Fin-R1-Data, and what that means for an auditable finance agent"
+tech_meta = "Fin-R1-DATA / DEEPSEEK-R1-671B / QWEN2.5-72B"
 math = false
 +++
 

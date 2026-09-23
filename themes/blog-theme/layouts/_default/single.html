@@ -1,20 +1,52 @@
 {{ define "main" }}
 
-  <div class="post-layout">
-    {{ if .TableOfContents }}
-    <aside id="toc-sidebar" class="toc-sidebar" data-title="{{ .Title }}"{{ with .Params.subtitle }} data-subtitle="{{ . }}"{{ end }}>
-      {{/* Render only body TOC by removing first two levels if they are page title/subtitle */}}
-      {{ .TableOfContents }}
-    </aside>
+<article class="canac-article-page">
+
+  <header class="canac-article-header">
+    {{ with .Params.categories }}
+      {{ range first 1 . }}
+        <a href="{{ $.Site.BaseURL }}/categories/{{ lower . }}/" class="canac-cat-link cat-{{ lower . }}">{{ . }}</a>
+      {{ end }}
     {{ end }}
-    <article id="post-content">
-      <header class="post-header">
-        <h1 id="post-title" class="title">{{ .Title }}</h1>
-        {{ with .Params.subtitle }}
-          <h3><em>{{ . }}</em></h3>
-        {{ end }}
-      </header>
-      {{ .Content }}
-    </article>
+    <time class="canac-article-date">{{ .Date.Format "02.01.2006" }}</time>
+
+    <h1 class="canac-article-h1">{{ .Title }}</h1>
+    {{ with .Params.subtitle }}
+      <p class="canac-article-subtitle">{{ . }}</p>
+    {{ end }}
+  </header>
+
+  <div class="canac-article-body">
+    {{ .Content }}
   </div>
+
+  {{/* Prev / Next navigation (blog.can.ac style) */}}
+  <div class="canac-nav-links">
+    {{ with .PrevInSection }}
+      <a href="{{ .RelPermalink }}" class="canac-nav canac-nav-prev">
+        <span class="canac-nav-arrow">&larr;</span>
+        {{ .Title }}
+      </a>
+    {{ end }}
+    {{ with .NextInSection }}
+      <a href="{{ .RelPermalink }}" class="canac-nav canac-nav-next">
+        {{ .Title }}
+        <span class="canac-nav-arrow">&rarr;</span>
+      </a>
+    {{ end }}
+  </div>
+
+  {{/* Author bio */}}
+  <div class="canac-author-bio">
+    {{ with site.Params.author.avatar }}
+      <img src="{{ . }}" alt="avatar" class="canac-avatar">
+    {{ end }}
+    <div class="canac-author-info">
+      <div class="canac-author-name">{{ site.Params.author.name }}</div>
+      <div class="canac-author-desc">{{ site.Params.author.description }}</div>
+    </div>
+  </div>
+
+</article>
+
 {{ end }}

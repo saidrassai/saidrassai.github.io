@@ -823,3 +823,837 @@ details:not([open]) > summary {
     font-size: 0.86rem;
   }
 }
+
+/* ===================================================================
+   BLOG.CAN.AC DARK THEME — Applied to saidrassai.github.io
+   Appends after all existing styles to override light theme +
+   define the .canac-* classes used in templates.
+   =================================================================== */
+
+/* ── Root: dark theme colors ─────────────────────────────────────── */
+:root {
+  --canac-bg: #070708;
+  --canac-bg-card: #0c0d0e;
+  --canac-text: #e4e6e8;
+  --canac-text-dim: #8b8f93;
+  --canac-text-dimmer: #5a5e62;
+  --canac-accent: #e11d47;
+  --canac-accent-bg: rgba(225, 30, 71, 0.12);
+  --canac-accent-border: rgba(225, 30, 71, 0.35);
+  --canac-border: rgba(255, 255, 255, 0.04);
+  --canac-border-strong: rgba(255, 255, 255, 0.06);
+  --canac-code-bg: #0e0e10;
+  --canac-code-text: #f8f8f2;
+  --canac-pre-border: rgba(255, 255, 255, 0.08);
+  --canac-table-bg: #0c0d0e;
+  --canac-table-head: #151618;
+  --canac-table-row-alt: rgba(255, 255, 255, 0.015);
+  --canac-table-row-hover: rgba(255, 255, 255, 0.03);
+  --canac-table-border: rgba(255, 255, 255, 0.04);
+  --canac-blockquote-bg: rgba(248, 79, 110, 0.03);
+  --canac-toc-bg: #0c0d0e;
+  --canac-toc-text: #9a9ea2;
+  --canac-toc-text-active: #e4e6e8;
+}
+
+/* ── Body: dark background, monospace, dense ─────────────────────── */
+body.canac-body {
+  background: var(--canac-bg) !important;
+  color: var(--canac-text) !important;
+  font-family: 'Fira Code', 'JetBrains Mono', 'SFMono-Regular', 'Menlo', 'Consolas', 'monospace' !important;
+  font-size: 0.87rem !important;
+  line-height: 1.5 !important;
+}
+
+/* Override the old body styles that get compiled into style.css */
+body {
+  background: var(--canac-bg) !important;
+  color: var(--canac-text) !important;
+  font-family: 'Fira Code', 'JetBrains Mono', 'SFMono-Regular', 'Menlo', 'Consolas', 'monospace' !important;
+  font-size: 0.87rem !important;
+  line-height: 1.5 !important;
+}
+
+/* ── Container ───────────────────────────────────────────────────── */
+.canac-container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 1.2rem;
+}
+
+/* ── Main content area ───────────────────────────────────────────── */
+.canac-main {
+  width: 100%;
+  padding: 1.2rem 0;
+}
+
+/* ── Footer wrapper ───────────────────────────────────────────────── */
+.canac-footer {
+  border-top: 1px solid var(--canac-border);
+  padding-top: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+/* ===================================================================
+   HEADER / NAV (can.ac minimal style)
+   =================================================================== */
+
+.canac-header {
+  padding: 1.5rem 0 1rem;
+  border-bottom: 1px solid var(--canac-border);
+}
+
+.canac-header-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.canac-logo a {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+}
+.canac-logo a .canac-dot { color: var(--canac-accent); }
+
+.canac-social {
+  display: flex;
+  gap: 0.7rem;
+}
+.canac-social a {
+  font-size: 0.68rem;
+  font-weight: 500;
+  color: var(--canac-text-dim);
+  border: 1px solid var(--canac-border-strong);
+  padding: 0.12rem 0.5rem;
+  border-radius: 3px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  transition: all 0.15s ease;
+}
+.canac-social a:hover {
+  border-color: rgba(255, 255, 255, 0.15);
+  color: var(--canac-text);
+}
+
+.canac-tagline h1 {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--canac-text);
+  letter-spacing: -0.005em;
+  line-height: 1.4;
+  margin: 0.5rem 0;
+}
+
+.canac-byline {
+  font-size: 0.68rem;
+  color: var(--canac-text-dimmer);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+/* ===================================================================
+   ARTICLE LISTING (dense 2-column)
+   =================================================================== */
+
+.canac-article-list {
+  margin-top: 0.6rem;
+}
+
+.canac-article-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid var(--canac-border);
+}
+.canac-article-link:hover {
+  background: rgba(255, 255, 255, 0.012);
+}
+
+.canac-article-row {
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: 0.8rem;
+  align-items: start;
+  padding: 0.7rem 0;
+}
+
+.canac-article-num {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--canac-accent);
+  background: var(--canac-accent-bg);
+  border: 1px solid var(--canac-accent-border);
+  border-radius: 3px;
+  padding: 0.1rem 0.3rem;
+  min-width: 32px;
+  text-align: center;
+  margin-top: 0.1rem;
+}
+
+.canac-article-title {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--canac-text);
+  line-height: 1.3;
+  letter-spacing: -0.005em;
+  margin: 0;
+}
+.canac-article-link .canac-article-title:hover {
+  color: #ff6b6b;
+}
+
+.canac-article-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  align-items: center;
+  font-size: 0.65rem;
+  line-height: 1.2;
+  margin-top: 0.2rem;
+}
+
+.canac-cat-tag {
+  display: inline-block;
+  font-size: 0.62rem;
+  font-weight: 700;
+  padding: 0.1rem 0.4rem;
+  border-radius: 3px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  border: 1px solid;
+}
+.cat-rag    { background: rgba(100, 200, 255, 0.10); color: #64c8ff; border-color: rgba(100, 200, 255, 0.25); }
+.cat-llm    { background: rgba(255, 175, 100, 0.10); color: #ffaf64; border-color: rgba(255, 175, 100, 0.25); }
+.cat-systems{ background: rgba(180, 120, 255, 0.10); color: #b478ff; border-color: rgba(180, 120, 255, 0.25); }
+.cat-data   { background: rgba(100, 255, 180, 0.08); color: #64ffb4; border-color: rgba(100, 255, 120, 0.22); }
+.cat-general{ background: rgba(150, 150, 170, 0.10); color: #9696aa; border-color: rgba(150, 150, 170, 0.25); }
+
+.canac-date,
+.canac-readtime {
+  color: var(--canac-text-dim);
+  font-weight: 500;
+}
+
+.canac-tech-meta {
+  margin-top: 0.25rem;
+  font-size: 0.62rem;
+  color: var(--canac-text-dimmer);
+  font-family: 'Fira Code', 'Menlo', monospace;
+  letter-spacing: 0;
+  line-height: 1.3;
+}
+
+.canac-article-desc {
+  margin-top: 0.25rem;
+  font-size: 0.72rem;
+  color: var(--canac-text-dim);
+  line-height: 1.4;
+}
+
+/* Mobile: stack number and content */
+@media (max-width: 720px) {
+  .canac-article-row {
+    grid-template-columns: 1fr;
+    gap: 0.3rem;
+  }
+  .canac-article-num { margin-top: 0; }
+}
+
+/* ===================================================================
+   ARTICLE PAGE
+   =================================================================== */
+
+.canac-article-page {
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.canac-article-header {
+  padding: 2rem 0 1.5rem;
+  border-bottom: 1px solid var(--canac-border);
+}
+
+.canac-cat-link {
+  display: inline-block;
+  font-size: 0.62rem;
+  font-weight: 700;
+  padding: 0.1rem 0.4rem;
+  border-radius: 3px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  border: 1px solid;
+  margin-bottom: 0.5rem;
+}
+.canac-cat-link.cat-rag    { background: rgba(100, 200, 255, 0.10); color: #64c8ff; border-color: rgba(100, 200, 255, 0.25); }
+.canac-cat-link.cat-llm    { background: rgba(255, 175, 100, 0.10); color: #ffaf64; border-color: rgba(255, 175, 100, 0.25); }
+.canac-cat-link.cat-systems{ background: rgba(180, 120, 255, 0.10); color: #b478ff; border-color: rgba(180, 120, 255, 0.25); }
+.canac-cat-link.cat-data   { background: rgba(100, 255, 180, 0.08); color: #64ffb4; border-color: rgba(100, 255, 120, 0.22); }
+.canac-cat-link.cat-general{ background: rgba(150, 150, 170, 0.10); color: #9696aa; border-color: rgba(150, 150, 170, 0.25); }
+
+.canac-article-date {
+  font-size: 0.68rem;
+  color: var(--canac-text-dim);
+  margin-bottom: 0.6rem;
+  display: block;
+}
+
+.canac-article-h1 {
+  font-size: 1.4rem;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+  margin: 0;
+  color: #f0f0f0;
+}
+
+.canac-article-subtitle {
+  font-size: 0.8rem;
+  color: var(--canac-text-dim);
+  margin-top: 0.4rem;
+  line-height: 1.5;
+}
+
+.canac-article-body {
+  font-size: 0.82rem;
+  color: #c2c5ca;
+  line-height: 1.55;
+  margin-top: 1.5rem;
+}
+
+.canac-article-body h2 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin: 1.3rem 0 0.5rem;
+  color: var(--canac-text);
+  letter-spacing: -0.005em;
+}
+.canac-article-body h2 .sec-num {
+  color: var(--canac-text-dim);
+  margin-right: 0.3rem;
+}
+.canac-article-body h3 {
+  font-size: 0.82rem;
+  font-weight: 600;
+  margin: 1rem 0 0.4rem;
+  color: var(--canac-text);
+}
+.canac-article-body h4 {
+  font-size: 0.78rem;
+  font-weight: 600;
+  margin: 0.8rem 0 0.3rem;
+  color: #cfcfcf;
+}
+.canac-article-body p {
+  margin-bottom: 0.85rem;
+}
+
+/* Code blocks for dark theme */
+.canac-article-body pre {
+  background: var(--canac-code-bg) !important;
+  border: 1px solid var(--canac-pre-border);
+  border-radius: 4px;
+  padding: 0.7rem 0.8rem;
+  font-size: 0.7rem;
+  margin: 0.7rem 0;
+  overflow-x: auto;
+  line-height: 1.45;
+}
+.canac-article-body pre code {
+  color: var(--canac-code-text) !important;
+  background: transparent !important;
+  padding: 0 !important;
+  font-size: 0.7rem;
+}
+.canac-article-body code {
+  font-size: 0.72rem;
+  background: rgba(255, 255, 255, 0.05) !important;
+  color: #f8f8f2 !important;
+  padding: 0.1rem 0.28rem;
+  border-radius: 3px;
+}
+
+/* Override existing pre/code styles from main.css */
+pre {
+  background: var(--canac-code-bg) !important;
+  border: 1px solid var(--canac-pre-border) !important;
+  border-radius: 4px !important;
+  padding: 0.7rem 0.8rem !important;
+  font-size: 0.7rem !important;
+  margin: 0.7rem 0 !important;
+}
+pre code {
+  color: var(--canac-code-text) !important;
+  background: transparent !important;
+}
+p code {
+  background: rgba(255, 255, 255, 0.05) !important;
+  color: #f8f8f2 !important;
+  padding: 0.1rem 0.28rem !important;
+  border-radius: 3px !important;
+  font-size: 0.72rem !important;
+}
+
+/* Tables — dark theme */
+.canac-article-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.8rem 0;
+  font-size: 0.72rem;
+}
+.canac-article-body th {
+  text-align: left;
+  padding: 0.25rem 0.5rem;
+  border-bottom: 1px solid var(--canac-table-border);
+  color: var(--canac-text-dim);
+  font-weight: 700;
+  font-family: 'Fira Code', 'Menlo', monospace;
+  letter-spacing: 0.02em;
+  background: var(--canac-table-head);
+}
+.canac-article-body td {
+  padding: 0.2rem 0.5rem;
+  border-bottom: 1px solid var(--canac-border);
+  color: #a8acb0;
+}
+.canac-article-body tbody tr:nth-child(even) { background: var(--canac-table-row-alt); }
+.canac-article-body tbody tr:hover { background: var(--canac-table-row-hover); }
+
+/* Override existing table styles */
+:root {
+  --tbl-bg: var(--canac-table-bg);
+  --tbl-border: var(--canac-border);
+  --tbl-border-strong: var(--canac-border-strong);
+  --tbl-head-bg: var(--canac-table-head);
+  --tbl-head-text: #b0b4b8;
+  --tbl-section-bg: rgba(255, 255, 255, 0.03);
+  --tbl-row-alt: var(--canac-table-row-alt);
+  --tbl-row-hover: var(--canac-table-row-hover);
+  --tbl-text: #c2c5ca;
+  --tbl-muted: var(--canac-text-dim);
+}
+
+/* Blockquotes — dark theme */
+blockquote {
+  display: block;
+  border: 1px solid var(--canac-border) !important;
+  border-radius: 0.25rem !important;
+  border-left: 0.22rem solid var(--canac-accent) !important;
+  margin: 0.8rem 0 !important;
+  padding: 0.5rem 0.8rem !important;
+  color: #b8b8b8 !important;
+  background-color: var(--canac-blockquote-bg) !important;
+}
+
+/* Headings — dark theme overrides */
+h1 {
+  font-size: 1.4rem !important;
+  font-family: 'Fira Code', 'Menlo', 'Consolas', monospace !important;
+  font-weight: 400 !important;
+  line-height: 1.2 !important;
+  margin-bottom: 0.3rem !important;
+  color: #f0f0f0 !important;
+}
+h2 {
+  font-size: 0.9rem !important;
+  font-family: 'Fira Code', 'Menlo', 'Consolas', monospace !important;
+  margin-top: 1.2rem !important;
+  margin-bottom: 0.4rem !important;
+  font-weight: 600 !important;
+  line-height: 1.25 !important;
+  color: var(--canac-text) !important;
+}
+h3 {
+  font-size: 0.82rem !important;
+  font-family: 'Fira Code', 'Menlo', 'Consolas', monospace !important;
+  margin-top: 0.9rem !important;
+  margin-bottom: 0.3rem !important;
+  color: var(--canac-text) !important;
+  line-height: 1.25 !important;
+  font-weight: 600 !important;
+}
+h4 {
+  font-size: 0.78rem !important;
+  margin-top: 0.7rem !important;
+  margin-bottom: 0.25rem !important;
+  color: #cfcfcf !important;
+  font-weight: 600 !important;
+}
+
+/* Links — dark theme with accent red hover */
+a { color: var(--canac-accent); }
+a:hover { color: #ff6b6b !important; }
+p a:hover { color: #ff6b6b !important; }
+ul a:hover { color: #ff6b6b !important; }
+
+/* TOC sidebar — dark theme */
+#TableOfContents {
+  padding: 10px;
+  padding-left: 20px;
+  border-left: 0.15rem solid rgba(255,255,255,0.1) !important;
+  margin-bottom: 1.5rem;
+  opacity: 0.7;
+}
+#TableOfContents a {
+  color: #9a9ea2;
+}
+#TableOfContents a:hover {
+  color: var(--canac-text);
+  text-decoration: underline;
+}
+
+/* TOC sidebar dark */
+.toc-sidebar {
+  color: #b0b4b8;
+}
+
+/* Post layout — remove sidebar for dense articles */
+.post-layout {
+  display: block !important;
+}
+.toc-sidebar { display: none !important; }
+
+/* ===================================================================
+   ARTICLE NAVIGATION (prev/next)
+   =================================================================== */
+
+.canac-nav-links {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--canac-border);
+}
+.canac-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--canac-text);
+}
+.canac-nav:hover {
+  color: var(--canac-accent);
+}
+.canac-nav-num {
+  font-size: 0.7rem;
+  color: var(--canac-text-dim);
+  font-weight: 700;
+}
+.canac-nav-arrow {
+  font-size: 0.8rem;
+  color: var(--canac-text-dim);
+}
+
+/* ===================================================================
+   AUTHOR BIO
+   =================================================================== */
+
+.canac-author-bio {
+  display: flex;
+  gap: 0.8rem;
+  margin: 1.8rem 0 0;
+  padding-top: 1rem;
+  border-top: 1px solid var(--canac-border);
+}
+.canac-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.canac-author-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+.canac-author-name {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #cfcfcf;
+}
+.canac-author-desc {
+  font-size: 0.68rem;
+  color: var(--canac-text-dim);
+  line-height: 1.4;
+}
+
+/* ===================================================================
+   FOOTER
+   =================================================================== */
+
+.canac-footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+  font-size: 0.68rem;
+  color: var(--canac-text-dim);
+}
+.canac-permalink a {
+  color: var(--canac-text-dim);
+  font-size: 0.68rem;
+}
+.canac-permalink a:hover {
+  color: var(--canac-text);
+}
+
+/* Superscript links */
+sup a {
+  font-size: 0.72rem !important;
+  text-decoration: underline;
+  color: #64c8ff !important;
+  font-weight: 600;
+}
+
+/* Copy button on code blocks — dark theme */
+.copy-btn {
+  color: #f8f8f2 !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+}
+.copy-btn:hover {
+  opacity: 1;
+}
+.copy-btn.copied {
+  color: #50fa7b !important;
+  border-color: rgba(80, 250, 123, 0.35) !important;
+  background: rgba(80, 250, 123, 0.1) !important;
+}
+
+/* ===================================================================
+   CONTEXT FIGURE (dark theme override)
+   =================================================================== */
+.context-figure {
+  background-color: var(--canac-bg-card) !important;
+  border: 1px solid var(--canac-border) !important;
+  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.3) !important;
+}
+.context-figure figcaption {
+  color: var(--canac-text-dim) !important;
+}
+.context-figure__models {
+  color: #b0b4b8 !important;
+}
+.context-figure__range {
+  color: #d0d4da !important;
+  font-family: 'Fira Code', 'Menlo', monospace !important;
+}
+.context-figure__note {
+  color: #6a6e72 !important;
+}
+.context-figure--image img {
+  box-shadow: inset 0 0 0 1px var(--canac-border) !important;
+}
+
+
+/* ===================================================================
+
+/* ===================================================================
+   THEME TOGGLE — Light mode overrides for .light body class
+   =================================================================== */
+
+/* Theme toggle button in header */
+.
+
+/* ===================================================================
+   THEME TOGGLE — Light mode overrides for .light body class
+   =================================================================== */
+
+/* Theme toggle button in header */
+.
+
+/* ===================================================================
+   THEME TOGGLE — Light mode overrides via CSS variable override on body.light
+   =================================================================== */
+
+/* Theme toggle button in header */
+.
+
+/* ===================================================================
+   THEME TOGGLE — Light mode overrides via CSS variable override on body.light
+   =================================================================== */
+
+/* Theme toggle button in header */
+.canac-theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.03);
+  cursor: pointer;
+  padding: 0;
+  font-size: 0.8rem;
+  transition: all 0.15s ease;
+}
+.canac-theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+.canac-theme-icon { display: none; }
+.canac-theme-dark-icon { display: inline-block; }
+body.light .canac-theme-dark-icon { display: none; }
+body.light .canac-theme-light-icon { display: inline-block; }
+
+/* Header layout */
+.canac-header-inner { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; }
+.canac-header-left { display: flex; flex-direction: column; gap: 0.5rem; }
+
+/* ── LIGHT THEME: Override ALL CSS variables ───────────────────────── */
+body.light {
+  /* Core colors */
+  --canac-bg: #faf8f7;
+  --canac-bg-card: #ffffff;
+  --canac-text: #2a2a2a;
+  --canac-text-dim: #5a5e62;
+  --canac-text-dimmer: #6b7280;
+  --canac-accent: #e11d47;
+  --canac-accent-bg: #e11e471a;
+  --canac-accent-border: #e11e4759;
+  --canac-border: rgba(0, 0, 0, 0.06);
+  --canac-border-strong: rgba(0, 0, 0, 0.1);
+  /* Code */
+  --canac-code-bg: #f5f5f5;
+  --canac-code-text: #2d2d2d;
+  --canac-pre-border: rgba(0, 0, 0, 0.1);
+  /* Tables */
+  --canac-table-bg: #ffffff;
+  --canac-table-head: #f0e9e2;
+  --canac-table-row-alt: rgba(0, 0, 0, 0.02);
+  --canac-table-row-hover: rgba(0, 0, 0, 0.03);
+  --canac-table-border: rgba(0, 0, 0, 0.06);
+  --canac-blockquote-bg: rgba(225, 30, 71, 0.03);
+  /* TOC */
+  --canac-toc-bg: #ffffff;
+  --canac-toc-text: #5a5e62;
+  --canac-toc-text-active: #021117;
+  /* Table legacy vars (also override these) */
+  --tbl-bg: #ffffff;
+  --tbl-border: rgba(0, 0, 0, 0.06);
+  --tbl-border-strong: rgba(0, 0, 0, 0.1);
+  --tbl-head-bg: #f0e9e2;
+  --tbl-head-text: #2a2a2a;
+  --tbl-section-bg: #faf7f4;
+  --tbl-row-alt: rgba(0, 0, 0, 0.02);
+  --tbl-row-hover: rgba(0, 0, 0, 0.03);
+  --tbl-text: #2a2a2a;
+  --tbl-muted: #5a5e62;
+  --tbl-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+
+  background: var(--canac-bg) !important;
+  color: var(--canac-text) !important;
+  font-family: 'Fira Code', 'JetBrains Mono', 'SFMono-Regular', 'Menlo', 'Consolas', 'monospace' !important;
+}
+
+/* Headings */
+body.light h1, body.light h2 { color: #0a0a0a !important; }
+body.light h3 { color: #1a1a1a !important; }
+body.light h4 { color: #2a2a2a !important; }
+
+/* Article */
+body.light .canac-article-title { color: #021117 !important; }
+body.light .canac-article-title:hover { color: #e11d47 !important; }
+body.light .canac-article-h1 { color: #021117 !important; }
+body.light .canac-article-subtitle { color: #5a5e62 !important; }
+body.light .canac-article-body { color: var(--canac-text) !important; }
+body.light .canac-article-body h2 { color: #0a0a0a !important; }
+body.light .canac-article-body h3 { color: #1a1a1a !important; }
+body.light .canac-article-body h2 .sec-num { color: #5a5e62 !important; }
+body.light .canac-article-body td { color: #2a2a2a !important; }
+body.light .canac-article-body li { color: #2a2a2a !important; }
+
+/* Links */
+body.light a { color: #e11d47 !important; }
+body.light a:hover { color: #c0193a !important; }
+
+/* Borders */
+body.light .canac-header { border-bottom-color: var(--canac-border) !important; }
+body.light .canac-footer { border-top-color: var(--canac-border) !important; }
+body.light .canac-article-link:hover { background: var(--canac-accent-bg) !important; }
+
+/* Code blocks */
+body.light pre {
+  background: var(--canac-code-bg) !important;
+  border-color: var(--canac-pre-border) !important;
+  color: var(--canac-code-text) !important;
+}
+body.light pre code, body.light pre { color: var(--canac-code-text) !important; }
+body.light p code, body.light li code, body.light code {
+  background: rgba(0, 0, 0, 0.04) !important;
+  color: #c0392b !important;
+  padding: 0.1rem 0.28rem !important;
+  border-radius: 3px !important;
+  font-size: 0.72rem !important;
+}
+
+/* Syntax highlighting — light mode (chroma) */
+body.light .chroma { color: #2a2a2a !important; }
+body.light .chroma .tok-c, body.light .chroma .tok-c1, body.light .chroma .tok-cm, body.light .chroma .tok-cp, body.light .chroma .tok-cs { color: #6b7280 !important; }
+body.light .chroma .tok-k, body.light .chroma .tok-kd, body.light .chroma .tok-kn, body.light .chroma .tok-kp, body.light .chroma .tok-kr, body.light .chroma .tok-kt { color: #a2743f !important; font-weight: bold !important; }
+body.light .chroma .tok-kc { color: #6b21d1 !important; }
+body.light .chroma .tok-s, body.light .chroma .tok-s1, body.light .chroma .tok-s2, body.light .chroma .tok-sa, body.light .chroma .tok-sb, body.light .chroma .tok-sc, body.light .chroma .tok-sd, body.light .chroma .tok-se, body.light .chroma .tok-sh, body.light .chroma .tok-si, body.light .chroma .tok-sr, body.light .chroma .tok-ss { color: #c0392b !important; }
+body.light .chroma .tok-m, body.light .chroma .tok-mf, body.light .chroma .tok-mh, body.light .chroma .tok-mi, body.light .chroma .tok-mo { color: #0270a5 !important; }
+body.light .chroma .tok-nf { color: #27ae60 !important; font-weight: bold !important; }
+body.light .chroma .tok-nt { color: #e11d47 !important; }
+body.light .chroma .tok-n, body.light .chroma .tok-na, body.light .chroma .tok-nb, body.light .chroma .tok-nc, body.light .chroma .tok-ni, body.light .chroma .tok-nl, body.light .chroma .tok-nn, body.light .chroma .tok-nx, body.light .chroma .tok-v, body.light .chroma .tok-vn, body.light .chroma .tok-vc, body.light .chroma .tok-vg, body.light .chroma .tok-vi { color: #2a2a2a !important; }
+body.light .chroma .tok-o, body.light .chroma .tok-ow { color: #a2743f !important; }
+body.light .chroma .tok-g, body.light .chroma .tok-gp, body.light .chroma .tok-gh { color: #6b7280 !important; }
+body.light .chroma .tok-err { color: #f8f8f2 !important; background-color: #c0392b !important; }
+
+/* Math/LaTeX — light mode */
+body.light .katex { color: #2a2a2a !important; }
+body.light .katex .katex-display { color: #2a2a2a !important; }
+body.light .katex .katex-html { color: #2a2a2a !important; }
+body.light .katex .katex-mathml { color: #2a2a2a !important; }
+body.light mjx-container { color: #2a2a2a !important; }
+body.light .math { color: #2a2a2a !important; }
+body.light .mjx-chtml { color: #2a2a2a !important; }
+body.light .mjx-chtml .mjx-mtext { color: #2a2a2a !important; }
+
+/* TOC */
+body.light #TableOfContents a { color: #6b7280 !important; }
+body.light #TableOfContents a:hover { color: #021117 !important; }
+body.light #TableOfContents { border-left-color: rgba(0, 0, 0, 0.1) !important; }
+body.light #TableOfContents a.active { color: #e11d47 !important; }
+
+/* Copy button */
+body.light .copy-btn {
+  color: #2a2a2a !important;
+  border-color: rgba(0, 0, 0, 0.15) !important;
+  background: rgba(0, 0, 0, 0.03) !important;
+}
+body.light .copy-btn.copied {
+  color: #27ae60 !important;
+  border-color: rgba(39, 174, 96, 0.4) !important;
+  background: rgba(39, 174, 96, 0.1) !important;
+}
+
+/* Context figures */
+body.light .context-figure {
+  background-color: #ffffff !important;
+  border-color: rgba(0, 0, 0, 0.06) !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+}
+body.light .context-figure figcaption { color: #9ca3af !important; }
+body.light .context-figure__models { color: #2a2a2a !important; }
+body.light .context-figure__range { color: #111111 !important; }
+body.light .context-figure__note { color: #9ca3af !important; }
+
+/* Author bio */
+body.light .canac-author-name { color: #021117 !important; }
+body.light .canac-author-desc { color: #5a5e62 !important; }
+body.light .canac-permalink a { color: #6b7280 !important; }
+body.light .canac-copyright { color: #9ca3af !important; }
+
+/* Category tags — light mode */
+body.light .cat-rag     { background: rgba(37, 99, 235, 0.08); color: #3b82f6; border-color: rgba(37, 99, 235, 0.25); }
+body.light .cat-llm     { background: rgba(194, 100, 0, 0.08); color: #c26c00; border-color: rgba(194, 100, 0, 0.25); }
+body.light .cat-systems { background: rgba(107, 33, 191, 0.08); color: #6b21d1; border-color: rgba(107, 33, 191, 0.25); }
+body.light .cat-data    { background: rgba(5, 150, 100, 0.08); color: #059669; border-color: rgba(5, 150, 100, 0.25); }
+body.light .cat-general { background: rgba(100, 110, 120, 0.08); color: #5a5e62; border-color: rgba(100, 110, 120, 0.25); }

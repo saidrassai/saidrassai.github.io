@@ -1,8 +1,10 @@
 +++
 title = 'Fine-tuning LFM2.5-1.2B-Instruct with GRPO'
 date = 2026-06-15
+categories = ["Systems"]
 [params]
 subtitle = "How to fine-tune LFM2.5-1.2B-Instruct with GRPO and Unsloth on OCR receipt extraction for JSON"
+tech_meta = "LFM2.5-1.2B / GRPO / UNSLOTH / OCR INVOICE EXTRACTION"
 math = true
 +++
 

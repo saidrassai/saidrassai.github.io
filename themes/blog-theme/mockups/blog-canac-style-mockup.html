@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Can.ac-style mockup for saidrassai.github.io</title>
+
+  <!-- ===================================================================
+       BLOG.CAN.AC STYLE MOCKUP APPLIED TO SAIDRASSAI.GITHUB.IO
+       This is a standalone mockup demonstrating the dense, dark-theme,
+       information-packed aesthetic of blog.can.ac on your actual content.
+       =================================================================== -->
+
+  <style>
+    /* ── Reset ───────────────────────────────────────────────────────── */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { font-size: 14px; }
+
+    /* ── Body: dark theme, monospace-dense ───────────────────────────── */
+    body {
+      background: #070708;
+      color: #e4e6e8;
+      font-family: 'SFMono-Regular', 'Fira Code', 'JetBrains Mono',
+                   'Menlo', 'Consolas', 'monospace';
+      line-height: 1.45;
+      font-size: 0.875rem;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ── Layout: tight, centered, wide content area ─────────────────── */
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    /* ── Header / Nav (minimal chrome) ───────────────────────────────── */
+    header {
+      padding: 1.5rem 0 1rem;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .logo {
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .logo a { color: #ffffff; }
+    .logo a .dot { color: #e11d47; } /* accent red like can.ac */
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 0.3rem;
+    }
+    .social-links a {
+      font-size: 0.75rem;
+      color: #8b8f93;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 0.12rem 0.55rem;
+      border-radius: 4px;
+      transition: border-color 0.15s;
+    }
+    .social-links a:hover {
+      border-color: rgba(255,255,255,0.2);
+      color: #cfcfcf;
+    }
+
+    /* ── Tagline / byline ─────────────────────────────────────────────── */
+    .tagline {
+      margin-top: 0.8rem;
+      font-size: 0.8rem;
+      color: #8b8f93;
+    }
+    .tagline h1 {
+      color: #cfcfcf;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+    }
+    .byline {
+      font-size: 0.75rem;
+      color: #6a6e72;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    /* ── Article listing (dense cards) ───────────────────────────────── */
+    .article-list {
+      margin-top: 1.2rem;
+    }
+    .article-list .article {
+      padding: 0.9rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+    }
+    .article-list .article:first-child {
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .article-list .article:hover {
+      background: rgba(255,255,255,0.015);
+    }
+
+    .article-row {
+      display: grid;
+      grid-template-columns: 36px 1fr;
+      gap: 0.9rem;
+      align-items: start;
+    }
+
+    /* Sequential number badge — like blog.can.ac [13] */
+    .article-num {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #ffffff;
+      background: rgba(225, 30, 71, 0.12);
+      border: 1px solid rgba(225, 30, 71, 0.35);
+      border-radius: 4px;
+      padding: 0.1rem 0.35rem;
+      min-width: 32px;
+      text-align: center;
+      margin-top: 0.1rem;
+    }
+
+    /* Article title + metadata block */
+    .article-content h2 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #ffffff;
+      line-height: 1.35;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.2rem;
+    }
+    .article-content h2 a:hover { color: #ff6b6b; }
+
+    /* Dense metadata line — category tags + date + read time */
+    .article-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      align-items: center;
+      font-size: 0.72rem;
+      line-height: 1.3;
+    }
+
+    /* Category tag pills (like CONTEXT CARRIER, ACTION DISPATCH) */
+    .category-tag {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 0.1rem 0.45rem;
+      border-radius: 3px;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    /* Distinct colors per category, like blog.can.ac */
+    .cat-rag        { background: rgba(100, 200, 255, 0.12); color: #64c8ff; border: 1px solid rgba(100, 200, 255, 0.3); }
+    .cat-llm        { background: rgba(255, 175, 100, 0.12); color: #ffaf64; border: 1px solid rgba(255, 175, 100, 0.3); }
+    .cat-systems    { background: rgba(160, 120, 255, 0.12); color: #a078ff; border: 1px solid rgba(160, 120, 255, 0.3); }
+    .cat-data       { background: rgba(100, 255, 180, 0.10); color: #64ffb4; border: 1px solid rgba(100, 255, 120, 0.25); }
+
+    /* Date + read time */
+    .article-date, .read-time {
+      color: #5a5e62;
+      font-weight: 500;
+    }
+    .read-time { color: #4a4e52; }
+
+    /* Inline technical metadata (like blog.can.ac's dense info strings) */
+    .tech-meta {
+      margin-top: 0.3rem;
+      font-size: 0.68rem;
+      color: #4a4e52;
+      font-family: 'Fira Code', 'Menlo', monospace;
+      letter-spacing: 0;
+      line-height: 1.3;
+    }
+
+    /* Subtitle/description */
+    .article-desc {
+      margin-top: 0.35rem;
+      font-size: 0.75rem;
+      color: #9a9ea2;
+      line-height: 1.4;
+    }
+
+    /* ── Footer ──────────────────────────────────────────────────────── */
+    footer {
+      margin-top: 2.5rem;
+      padding: 1.5rem 0;
+      border-top: 1px solid rgba(255,255,255,0.04);
+      font-size: 0.72rem;
+      color: #4a4e52;
+    }
+    footer .copyright { color: #5a5e62; }
+
+    /* ── Article page styles ─────────────────────────────────────────── */
+    .article-page {
+      max-width: 820px;
+      margin: 0 auto;
+    }
+    .article-page header {
+      padding: 2.5rem 0 1.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .article-page .cat-link {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      margin-bottom: 0.6rem;
+    }
+    .article-page .date {
+      font-size: 0.72rem;
+      color: #5a5e62;
+    }
+    .article-page h1 {
+      font-size: 1.5rem;
+      font-weight: 500;
+      letter-spacing: -0.015em;
+      margin: 0.7rem 0;
+      color: #f0f0f0;
+      line-height: 1.25;
+    }
+    .article-page .subtitle {
+      font-size: 0.8rem;
+      color: #9a9ea2;
+      margin-top: 0.5rem;
+      line-height: 1.5;
+    }
+
+    /* Dense article body */
+    .article-body {
+      font-size: 0.82rem;
+      color: #c2c5ca;
+      line-height: 1.55;
+      margin-top: 1.5rem;
+    }
+    .article-body h2 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin: 1.4rem 0 0.5rem;
+      color: #e4e6e8;
+      letter-spacing: -0.005em;
+    }
+    .article-body h2 .sec-num {
+      color: #8b8f93;
+      margin-right: 0.4rem;
+    }
+    .article-body p {
+      margin-bottom: 0.95rem;
+    }
+    .article-body pre {
+      background: #0e0e10;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 4px;
+      padding: 0.8rem 0.9rem;
+      font-size: 0.72rem;
+      overflow-x: auto;
+      margin: 0.8rem 0;
+    }
+    .article-body code {
+      font-size: 0.72rem;
+      background: rgba(255,255,255,0.05);
+      padding: 0.1rem 0.3rem;
+      border-radius: 3px;
+    }
+
+    /* Table styling (dense, like blog.can.ac) */
+    .article-body table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0.8rem 0;
+      font-size: 0.72rem;
+    }
+    .article-body th {
+      text-align: left;
+      padding: 0.25rem 0.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      color: #8b8f93;
+      font-weight: 700;
+      font-family: 'Fira Code', monospace;
+      letter-spacing: 0.02em;
+    }
+    .article-body td {
+      padding: 0.2rem 0.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      color: #a8acb0;
+    }
+
+    /* Navigation links at bottom (like blog.can.ac prev/next) */
+    .nav-links {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .nav-links .nav-prev, .nav-links .nav-next {
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+    .nav-links .nav-prev .num, .nav-links .nav-next .num {
+      color: #8b8f93;
+      font-weight: 700;
+    }
+
+    /* Author bio footer (like blog.can.ac) */
+    .author-bio {
+      display: flex;
+      gap: 0.8rem;
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .author-bio img {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .author-bio .author-name {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #cfcfcf;
+    }
+    .author-bio .author-desc {
+      font-size: 0.72rem;
+      color: #8b8f93;
+      line-height: 1.4;
+      margin-top: 0.2rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 720px) {
+      .article-row { grid-template-columns: 1fr; }
+      .article-num { margin-top: 0; }
+      header .social-links { gap: 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════════════════════════════
+       HOMEPAGE MOCKUP — Dense article listing in blog.can.ac style
+       ══════════════════════════════════════════════════════════════════ -->
+
+  <header>
+    <div class="container">
+      <div class="logo">rassai<span class="dot">.</span></div>
+      <div class="social-links">
+        <a href="https://github.com/saidrassai">GitHub</a>
+        <a href="https://twitter.com/saidrassai">X</a>
+        <a href="https://www.linkedin.com/in/saidrassai">LinkedIn</a>
+      </div>
+      <div class="tagline">
+        <h1>Security research, reverse engineering & low-level systems.</h1>
+        <div class="byline">SAID RASSAI — DATA & AI ENGINEER.</div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- Article listing -->
+    <div class="article-list">
+
+      <!-- Article 1 (newest → [13] style) -->
+      <div class="article">
+        <div class="article-row">
+          <div class="article-num">[03]</div>
+          <div class="article-content">
+            <h2><a href="enterprise-cpu-rag.html">Building an ENTERPRISE CPU RAG RESEARCH 2025–2026</a></h2>
+            <div class="article-meta">
+              <span class="category-tag cat-rag">RAG</span>
+              <span class="article-date">05.06.2026</span>
+              <span class="read-time">≈ 32 min read</span>
+            </div>
+            <div class="tech-meta">
+              CPU-ONLY / BGE-M3 + SPLADEv3 + COLBERT-v2 / IPEX int8 / NVidia AMX / FINANCEBENCH 8K
+            </div>
+            <div class="article-desc">
+              Comprehensive Technical Reference for Lattice Finance RAG System. Covers 7 domains:
+              Hybrid Retrieval, CPU Quantization, GraphRAG, Agentic RAG, Evaluation, KV Optimization, Guardrails.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Article 2 -->
+      <div class="article">
+        <div class="article-row">
+          <div class="article-num">[02]</div>
+          <div class="article-content">
+            <h2><a href="finance-agent-journey.html">Building a Finance Agent and Dataset: From Research Note to Replication</a></h2>
+            <div class="article-meta">
+              <span class="category-tag cat-llm">LLM</span>
+              <span class="article-date">02.06.2026</span>
+              <span class="read-time">≈ 12 min read</span>
+            </div>
+            <div class="tech-meta">
+              Fin-R1-DATA / DEEPSEEK-R1-671B / QWEN2.5-72B / GRPO / COGNITIVE ARCHITECTURE
+            </div>
+            <div class="article-desc">
+              Reconstructing Fin-R1-Data: blind teacher distillation pipeline with DeepSeek Pro API.
+              5,000-example CoT dataset targeting auditable finance agent reasoning. 2.2% retention on Finance-500K.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Article 3 -->
+      <div class="article">
+        <div class="article-row">
+          <div class="article-num">[01]</div>
+          <div class="article-content">
+            <h2><a href="finetune-lfm2-5.html">Fine-tuning LFM2.5-1.2B-Instruct with GRPO</a></h2>
+            <div class="article-meta">
+              <span class="category-tag cat-systems">SYSTEMS</span>
+              <span class="article-date">15.06.2026</span>
+              <span class="read-time">≈ 18 min read</span>
+            </div>
+            <div class="tech-meta">
+              LFM2.5-1.2B / GRPO / UNSLOTH / VLLM / OCR INVOICE EXTRACTION / JSON SCHEMA
+            </div>
+            <div class="article-desc">
+              GRPO fine-tuning of LFM2.5-1.2B-Instruct on OCR receipt extraction.
+              3 reward functions (JSON structure, key presence, value accuracy). 1.9% LoRA params, 250 steps on T4.
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="copyright">&copy; 2026 SAID RASSAI</div>
+      <div>Blog built with Hugo. Styled after <a href="https://blog.can.ac/" target="_blank" style="color:#8b8f93;">blog.can.ac</a>.</div>
+    </div>
+  </footer>
+
+  <!-- ══════════════════════════════════════════════════════════════════
+       ARTICLE PAGE MOCKUP — Dense article in blog.can.ac style
+       (Uncomment to view article page)
+       ══════════════════════════════════════════════════════════════════
+  -->
+
+  <!--
+  <article class="article-page">
+    <header>
+      <div class="container">
+        <div class="tagline">
+          <span class="category-tag cat-rag">RAG</span>
+          <div class="date">05.06.2026</div>
+        </div>
+        <h1>Building an ENTERPRISE CPU RAG RESEARCH 2025–2026</h1>
+        <div class="subtitle">
+          Comprehensive Technical Reference for Lattice Finance RAG System
+        </div>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="article-body">
+
+        <h2><span class="sec-num">0x0</span> Hybrid Retrieval: Architecture, Fusion & Optimization</h2>
+
+        <h3>1.1 Key Papers & Industry Systems (2025–2026)</h3>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Paper / System</th>
+              <th>Venue / Org</th>
+              <th>Key Finding for Production RAG</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Hybrid Search (BM25 + Dense)</strong></td>
+              <td>Industry Standard (Elastic, Vespa, Weaviate 2025)</td>
+              <td>RRF (Reciprocal Rank Fusion) k=60 remains SOTA</td>
+            </tr>
+            <tr>
+              <td><strong>BGE-M3</strong></td>
+              <td>arXiv:2402.03668v2, ICML 2025</td>
+              <td>Single model: dense + sparse + ColBERT vectors</td>
+            </tr>
+            <tr>
+              <td><strong>SPLADEv3</strong></td>
+              <td>arXiv:2205.09153v3, NeurIPS 2025</td>
+              <td>Learned sparse expansion beats BM25 on BEIR</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>1.2 Production Hybrid Retrieval Architecture</h3>
+
+        <pre>graph TD
+    Q[Query] --> E1[Dense Encoder]
+    Q --> E2[Sparse Encoder]
+    E1 --> I1[Dense Index]
+    E2 --> I2[Sparse Index]
+    I1 --> F[Fusion Layer RRF]
+    I2 --> F
+    F --> R[Rerank BGE-Reranker]
+    R --> G[Top-K Results]</pre>
+
+        <p>
+          Fusion Strategy: Zero-shot / General → RRF k=60.
+          Domain-specific (Finance) → Alpha-weighted 0.7 dense / 0.3 sparse.
+          High-recall → Concat + Rerank top-200 each → cross-encoder top-10.
+        </p>
+
+        <h2><span class="sec-num">0x1</span> CPU Quantization & Inference Optimization</h2>
+
+        <h3>2.1 Intel IPEX + Optimum Intel Stack</h3>
+
+        <pre>from optimum.intel import IPEXModel
+
+model = IPEXModel.from_pretrained(
+    "BAAI/bge-large-en-v1.5",
+    export=True,
+    quantization_config="int8_static",
+    calibration_data=calibration_loader
+)</pre>
+
+        <p>
+          Hardware: Intel Xeon Scalable (Ice Lake+) with AVX-512/VNNI/AMX.
+          Thread affinity: OMP_NUM_THREADS=physical_cores, KMP_AFFINITY=granularity=fine,compact,1,0.
+        </p>
+
+        <h2><span class="sec-num">0x2</span> Benchmark Targets (CPU-Only)</h2>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Metric</th>
+              <th>Current</th>
+              <th>Target</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Recall@100 (FinanceBench)</td><td>~55%</td><td><strong>85%+</strong></td></tr>
+            <tr><td>nDCG@10 (FinanceBench)</td><td>~0.42</td><td><strong>0.65+</strong></td></tr>
+            <tr><td>Latency p50 (retrieval)</td><td>~200ms</td><td><strong>&lt;80ms</strong></td></tr>
+          </tbody>
+        </table>
+
+      </div>
+
+      <div class="author-bio">
+        <img src="https://github.com/saidrassai.png" alt="avatar">
+        <div>
+          <div class="author-name">SAID RASSAI</div>
+          <div class="author-desc">Data & AI Engineer. Building enterprise RAG systems for finance. Interested in CPU inference optimization, GraphRAG, and agentic workflows.</div>
+        </div>
+      </div>
+
+      <div class="nav-links">
+        <a href="finance-agent-journey.html" class="nav-prev">
+          <span class="num">[01 </span>Building a Finance Agent...
+        </a>
+        <a href="finetune-lfm2-5.html" class="nav-next">
+          Fine-tuning LFM2.5... <span class="num">→ 02]</span>
+        </a>
+      </div>
+    </div>
+  </article>
+  -->
+
+</body>
+</html>

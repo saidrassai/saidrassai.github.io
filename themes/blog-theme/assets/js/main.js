@@ -176,3 +176,49 @@ document.addEventListener("DOMContentLoaded", () => {
   // Initial highlight
   highlightActiveToc();
 });
+
+// Theme toggle (dark ↔ light)
+document.addEventListener("DOMContentLoaded", () => {
+  const STORAGE_KEY = 'theme';
+  const body = document.body;
+  const toggle = document.getElementById('theme-toggle');
+
+  // Safe localStorage helpers (some browsers/ extensions block access)
+  const storage = {
+    get: () => {
+      try { return localStorage.getItem(STORAGE_KEY); } catch { return null; }
+    },
+    set: (val) => {
+      try { localStorage.setItem(STORAGE_KEY, val); } catch {}
+    }
+  };
+
+  // Apply saved theme
+  const saved = storage.get();
+  if (saved === 'light') body.classList.add('light');
+
+  // Sync icon visibility
+  const syncIcons = () => {
+    const darkIcon = document.querySelector('.canac-theme-dark-icon');
+    const lightIcon = document.querySelector('.canac-theme-light-icon');
+    if (!darkIcon || !lightIcon) return;
+    if (body.classList.contains('light')) {
+      darkIcon.style.display = 'none';
+      lightIcon.style.display = 'inline-block';
+    } else {
+      darkIcon.style.display = 'inline-block';
+      lightIcon.style.display = 'none';
+    }
+  };
+
+  if (toggle) {
+    toggle.addEventListener('click', () => {
+      body.classList.toggle('light');
+      const isLight = body.classList.contains('light');
+      storage.set(isLight ? 'light' : 'dark');
+      syncIcons();
+    });
+  }
+
+  syncIcons();
+});

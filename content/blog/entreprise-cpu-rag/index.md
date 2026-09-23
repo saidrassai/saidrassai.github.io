@@ -1,8 +1,10 @@
 +++
 title = 'Building an ENTERPRISE CPU RAG RESEARCH 2025–2026'
 date = 2026-06-05
+categories = ["RAG"]
 [params]
 subtitle = "Comprehensive Technical Reference for Lattice Finance RAG System"
+tech_meta = "CPU-ONLY / BGE-M3 + SPLADEv3 + COLBERT-v2 / FINANCEBENCH 8K"
 math = false
 +++
 

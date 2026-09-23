@@ -5,8 +5,12 @@ theme = 'blog-theme'
 googleAnalytics = "G-PCNGEYW1TG"
 
 [params]
-  defaultTheme = 'light'
+  defaultTheme = 'dark'
   math = false
+  [params.author]
+    name = 'SAID RASSAI'
+    description = 'Data & AI Engineer. Building enterprise RAG systems. Interested in CPU inference optimization, GraphRAG, and agentic workflows.'
+    avatar = '/images/avatar.svg'
 
 [markup]
   [markup.goldmark]
@@ -14,8 +18,8 @@ googleAnalytics = "G-PCNGEYW1TG"
       [markup.goldmark.extensions.passthrough]
         enable = true
         [markup.goldmark.extensions.passthrough.delimiters]
-          block = [['\[', '\]'], ['$$', '$$']]
-          inline = [['\(', '\)'], ['$', '$']]
+          block = [['\\[', '\\]'], ['$$', '$$']]
+          inline = [['\\(', '\\)'], ['$', '$']]
       unsafe = true
   [markup.tableOfContents]
     startLevel = 2
@@ -26,6 +30,14 @@ googleAnalytics = "G-PCNGEYW1TG"
 unsafe = true
 
 [markup.highlight]
-  style = 'github'
+  style = 'nord'
   noClasses = false
   lineNos = false
+
+[outputs]
+  home = ['HTML']
+  page = ['HTML']
+
+[taxonomies]
+  tag = 'tags'
+  category = 'categories'

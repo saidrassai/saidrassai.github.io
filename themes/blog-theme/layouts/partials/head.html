@@ -1,6 +1,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
+    <script>document.body.classList.toggle('light', localStorage.getItem('theme') === 'light')</script>
     <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ printf "%s | %s" .Title site.Title }}{{ end }}</title>
     {{ partialCached "head/css.html" . }}
     {{ partialCached "head/js.html" . }}
