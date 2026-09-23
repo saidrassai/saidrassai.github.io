@@ -1,22 +1,62 @@
-<header class="canac-header">
-  <div class="canac-header-inner">
-    <div class="canac-header-left">
-      <div class="canac-logo">
-        <a href="{{ .Site.BaseURL }}">rassai<span class="canac-dot">.</span></a>
+<header class="site-header">
+  <div class="header-inner">
+    <a href="{{ site.Home.RelPermalink }}" class="wordmark" aria-label="{{ site.Title }} home">{{ site.Title }}<span class="dot">.</span></a>
+    <nav class="header-nav caps" aria-label="Primary navigation">
+      <a href="{{ site.Home.RelPermalink }}">Home</a>
+      {{ with site.Taxonomies.categories }}
+      {{ if gt (len .) 0 }}
+      <div class="nav-dropdown">
+        <button class="nav-dropdown-trigger" type="button" aria-expanded="false" aria-haspopup="true">Categories <span aria-hidden="true">&darr;</span></button>
+        <div class="nav-dropdown-menu" role="menu">
+          {{ range .Alphabetical }}
+          <a href="{{ .Page.RelPermalink }}" role="menuitem">{{ .Page.Title }}</a>
+          {{ end }}
+        </div>
       </div>
-      <nav class="canac-social">
-        <a href="https://github.com/saidrassai" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://twitter.com/saidrassai" target="_blank" rel="noopener">X</a>
-        <a href="https://www.linkedin.com/in/saidrassai" target="_blank" rel="noopener">LinkedIn</a>
-      </nav>
+      {{ end }}
+      {{ end }}
+      <a href="{{ "index.xml" | absURL }}">RSS</a>
+    </nav>
+    <div class="header-actions">
+      {{ with site.Params.social }}
+      {{ range . }}
+      <a href="{{ .url }}" target="_blank" rel="noopener" class="header-icon" aria-label="{{ .name }}">{{ safeHTML .icon }}</a>
+      {{ end }}
+      {{ end }}
+      <button class="search-trigger" type="button" aria-label="Search">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/></svg>
+        <span class="search-hint">&#8984;K</span>
+      </button>
+      <button class="header-menu-toggle" type="button" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
-    <button id="theme-toggle" class="canac-theme-toggle" aria-label="Toggle theme">
-      <span class="canac-theme-icon canac-theme-dark-icon">☀️</span>
-      <span class="canac-theme-icon canac-theme-light-icon">🌙</span>
-    </button>
-  </div>
-  <div class="canac-tagline">
-    <h1>Security research, reverse engineering & low-level systems.</h1>
-    <p class="canac-byline">{{ site.Params.author.name }} — {{ site.Params.author.description }}</p>
   </div>
 </header>
+<div class="mobile-menu" id="mobile-menu">
+  <nav class="caps" aria-label="Mobile navigation">
+    <a href="{{ site.Home.RelPermalink }}">Home</a>
+    <a href="{{ "categories" | absURL }}/">All categories</a>
+    <a href="{{ "index.xml" | absURL }}">RSS</a>
+    {{ with site.Taxonomies.categories }}
+    {{ range .Alphabetical }}
+    <a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a>
+    {{ end }}
+    {{ end }}
+  </nav>
+  {{ with site.Params.social }}
+  <div class="mobile-social caps">
+    {{ range . }}
+    <a href="{{ .url }}">{{ .name }}</a>
+    {{ end }}
+  </div>
+  {{ end }}
+</div>
+<div class="search-modal" id="search-modal" aria-hidden="true">
+  <button class="search-modal-backdrop" type="button" aria-label="Close search"></button>
+  <div class="search-modal-content">
+    <div class="search-modal-label caps">Search the index</div>
+    <div id="search-modal-input"></div>
+  </div>
+</div>
+<script>
+(function(){const n=document.querySelector(".header-menu-toggle"),r=document.getElementById("mobile-menu"),t=document.querySelector(".nav-dropdown-trigger"),o=document.querySelector(".nav-dropdown"),e=document.getElementById("search-modal"),c=document.querySelectorAll(".search-trigger");let i;function s(){e.classList.remove("open"),e.setAttribute("aria-hidden","true"),document.body.classList.remove("search-open")}function a(){e.classList.add("open"),e.setAttribute("aria-hidden","false"),document.body.classList.add("search-open");const t=document.getElementById("search-modal-input");!i&&!t.hasChildNodes()&&(typeof PagefindUI!="undefined"?i=new PagefindUI({element:"#search-modal-input",showSubResults:!0,showImages:!1,autofocus:!0}):t.innerHTML='<p class="search-unavailable">Search is not available — run a production build first.</p>'),setTimeout(()=>{const e=t.querySelector("input");e&&e.focus()},50)}n.addEventListener("click",()=>{const e=n.getAttribute("aria-expanded")==="true";n.setAttribute("aria-expanded",String(!e)),r.classList.toggle("open",!e)}),t.addEventListener("click",()=>{const e=t.getAttribute("aria-expanded")==="true";t.setAttribute("aria-expanded",String(!e)),o.classList.toggle("open",!e)}),c.forEach(e=>e.addEventListener("click",a)),e.querySelector(".search-modal-backdrop").addEventListener("click",s),document.addEventListener("keydown",n=>{(n.metaKey||n.ctrlKey)&&n.key==="k"&&(n.preventDefault(),e.classList.contains("open")?s():a()),n.key==="Escape"&&(s(),o.classList.remove("open"),t.setAttribute("aria-expanded","false"))})})()
+</script>

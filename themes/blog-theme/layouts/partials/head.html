@@ -1,18 +1,47 @@
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <script>document.body.classList.toggle('light', localStorage.getItem('theme') === 'light')</script>
-    <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ printf "%s | %s" .Title site.Title }}{{ end }}</title>
-    {{ partialCached "head/css.html" . }}
-    {{ partialCached "head/js.html" . }}
-    {{ $style := resources.Get "style.css" }}    
-    <link rel="stylesheet" href="{{ $style.Permalink }}"> 
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='100' fill='%23e11d47'/></svg>">
-
-    {{ if .Param "math" }}
-    {{ partialCached "math.html" . }}
-    {{ end }}
-    {{ if .Param "mermaid" }}
-    {{ partialCached "mermaid.html" . }}
-    {{ end }}
-</head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ printf "%s | %s" .Title site.Title }}{{ end }}</title>
+<meta name="description" content="{{ or .Description .Site.Params.author.description }}">
+<link rel="canonical" href="{{ .Permalink }}">
+<meta property="og:title" content="{{ .Title }}">
+<meta property="og:description" content="{{ or .Description .Site.Params.author.description }}">
+<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:site_name" content="{{ site.Title }}">
+{{ with site.Params.og_image }}<meta property="og:image" content="{{ . | absURL }}">{{ end }}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ .Title }}">
+<meta name="twitter:description" content="{{ or .Description .Site.Params.author.description }}">
+{{ with site.Params.og_image }}<meta name="twitter:image" content="{{ . | absURL }}">{{ end }}
+<link rel="icon" href="{{ "images/favicon-32.png" | absURL }}" sizes="32x32">
+<link rel="icon" href="{{ "images/favicon-192.png" | absURL }}" sizes="192x192">
+<link rel="apple-touch-icon" href="{{ "images/apple-touch-icon.png" | absURL }}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+{{ $style := resources.Get "style.css" }}
+{{ with $style | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+{{ end }}
+{{ $syntax := resources.Get "css/syntax.css" }}
+{{ with $syntax | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+{{ end }}
+{{ $js := resources.Get "js/main.js" }}
+{{ with $js | minify | fingerprint }}
+  <script src="{{ .RelPermalink }}" defer integrity="{{ .Data.Integrity }}" crossorigin="anonymous"></script>
+{{ end }}
+<link href="{{ "pagefind/pagefind-ui.css" | relURL }}" rel="stylesheet">
+<script src="{{ "pagefind/pagefind-ui.js" | relURL }}" defer></script>
+{{ if .Param "math" }}
+  {{ partialCached "math.html" . }}
+{{ end }}
+{{ if .Param "mermaid" }}
+  {{ partialCached "mermaid.html" . }}
+{{ end }}
+{{ with site.Params.umami_id }}
+{{ if hugo.IsServer }}{{ else }}
+<script defer src="https://cloud.umami.is/script.js" data-website-id="{{ . }}"></script>
+{{ end }}
+{{ end }}

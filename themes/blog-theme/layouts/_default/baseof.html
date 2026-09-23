@@ -2,19 +2,14 @@
 <html lang="{{ or site.Language.LanguageCode }}" dir="{{ or site.Language.LanguageDirection `ltr` }}">
 <head>
   {{ partial "head.html" . }}
-  {{ if .Param "math" }}
-    {{ partialCached "math.html" . }}
-  {{ end }}
 </head>
-<body class="canac-body">
-  <div class="canac-container">
-    {{ partial "header.html" . }}
-    <main class="canac-main">
+<body class="kind-{{ if .IsHome }}home{{ else }}page{{ end }}">
+  {{ partial "header.html" . }}
+  <div class="site-wrap">
+    <main class="main-content">
       {{ block "main" . }}{{ end }}
     </main>
-    <footer class="canac-footer">
-      {{ partial "footer.html" . }}
-    </footer>
+    {{ partial "footer.html" . }}
   </div>
 </body>
 </html>

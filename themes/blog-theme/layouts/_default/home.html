@@ -1,7 +1,54 @@
 {{ define "main" }}
-  {{ .Content }}
-  {{ range site.RegularPages }}
-    <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
-    {{ .Summary }}
+
+<section class="home-hero">
+  <h1>{{ site.Params.hero_title | default "Data & AI engineering." }}<span class="dot">.</span></h1>
+  {{ $newest := (index site.RegularPages 0).Date }}
+{{ $oldest := (index (last 1 site.RegularPages) 0).Date }}
+<div class="hero-sub caps">{{ site.Params.author.name }} — {{ len site.RegularPages }} articles — {{ if eq $newest.Year $oldest.Year }}{{ $newest.Format "2006" }}{{ else }}{{ $oldest.Format "2006" }}&ndash;{{ $newest.Format "2006" }}{{ end }}</div>
+</section>
+
+<div class="plate-label caps">The work</div>
+<section class="plate" aria-label="Article plates">
+  {{/* Holes pad the grid to a whole row (4-col); the ink background paints the
+     hairlines, so surplus slots would show as black. */}}
+{{ range $index, $page := first 7 site.RegularPages }}
+  {{ if eq $index (mod (add 8 (mod (sub 0 (len site.RegularPages)) 4)) 4) }}<span class="plate-hole" aria-hidden="true"></span>{{ end }}
+  <a class="plate-cell" href="{{ $page.RelPermalink }}" style="--bar:{{ $page.Params.bar_color | default "#2f6f4f" }}">
+    <span class="plate-art">
+      <svg viewBox="0 0 588 420" width="588" height="420" role="img" aria-hidden="true">
+        <rect x="0" y="0" width="588" height="420" fill="#fff"/>
+        <text x="44" y="60" font-family="'JetBrains Mono', 'SF Mono', monospace" font-size="13" letter-spacing="1.6" fill="#757575">{{ printf "NO. %02d" (sub (len site.RegularPages) $index) }}</text>
+        <line x1="44" y1="80" x2="544" y2="80" stroke="#0d0d0d" stroke-width="1.5" opacity=".25"/>
+        <text x="44" y="180" font-family="Archivo, 'Inter', sans-serif" font-weight="800" font-size="42" letter-spacing="-1.5" fill="#0d0d0d">{{ $page.Title | truncate 26 "" }}</text>
+        {{ with $page.Params.tech_meta }}
+        <text x="44" y="220" font-family="'JetBrains Mono', 'SF Mono', monospace" font-size="11" letter-spacing="1.2" fill="#757575">{{ . | truncate 44 "" }}</text>
+        {{ end }}
+        <text x="44" y="300" font-family="'JetBrains Mono', 'SF Mono', monospace" font-weight="700" font-size="15" letter-spacing="1.2" fill="#e30613">READ ARTICLE &rarr;</text>
+      </svg>
+    </span>
+    <span class="plate-cap">
+      <span class="plate-no">{{ printf "%02d" (sub (len site.RegularPages) $index) }}</span>
+      <span class="plate-title">{{ $page.Title }}</span>
+    </span>
+  </a>
   {{ end }}
+</section>
+
+<section class="index-rows" aria-label="Article index">
+  {{ range $index, $page := site.RegularPages }}
+  <a class="index-row" href="{{ $page.RelPermalink }}">
+    <span class="row-bar" style="background:{{ $page.Params.bar_color | default "#2f6f4f" }}"></span>
+    <div class="row-body">
+      <div class="row-top caps">
+        <span class="row-no">{{ printf "%02d" (sub (len site.RegularPages) $index) }}</span>
+        <time datetime="{{ $page.Date.Format "2006-01-02" }}">{{ $page.Date.Format "02.01.2006" }}</time>
+        {{ with $page.Params.categories }}{{ range first 1 . }}<span>{{ . }}</span>{{ end }}{{ end }}
+        <span>{{ $page.ReadingTime }} min</span>
+      </div>
+      <h2 class="row-title">{{ $page.Title }}</h2>
+    </div>
+  </a>
+  {{ end }}
+</section>
+
 {{ end }}

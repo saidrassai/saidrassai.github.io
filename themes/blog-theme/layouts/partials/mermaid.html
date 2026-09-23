@@ -1,82 +1,49 @@
-<!-- Mermaid.js for diagram rendering -->
-<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs" type="module"></script>
-<script>
-  // Initialize mermaid with dark theme support
-  document.addEventListener("DOMContentLoaded", () => {
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const theme = prefersDark ? "dark" : "default";
-    
+<!-- Mermaid.js for diagram rendering (ESM default export; no global) -->
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
+
+  const apply = (theme) => {
     mermaid.initialize({
       startOnLoad: true,
-      theme: theme,
+      theme,
       themeVariables: {
-        // Dark theme overrides for better visibility
-        primaryColor: prefersDark ? "#3b82f6" : "#1e40af",
-        primaryTextColor: prefersDark ? "#f1f5f9" : "#1e293b",
-        primaryBorderColor: prefersDark ? "#60a5fa" : "#3b82f6",
-        lineColor: prefersDark ? "#94a3b8" : "#64748b",
-        secondaryColor: prefersDark ? "#1e293b" : "#f1f5f9",
-        tertiaryColor: prefersDark ? "#334155" : "#e2e8f0",
-        background: prefersDark ? "#0f172a" : "#ffffff",
-        mainBkg: prefersDark ? "#1e293b" : "#f8fafc",
-        secondBkg: prefersDark ? "#334155" : "#e2e8f0",
-        textColor: prefersDark ? "#f1f5f9" : "#1e293b",
-        nodeTextColor: prefersDark ? "#f1f5f9" : "#1e293b",
-        clusterBkg: prefersDark ? "#1e293b" : "#f8fafc",
-        clusterBorder: prefersDark ? "#475569" : "#cbd5e1",
-        defaultLinkColor: prefersDark ? "#94a3b8" : "#64748b",
-        titleColor: prefersDark ? "#f1f5f9" : "#1e293b",
-        edgeLabelBackground: prefersDark ? "#334155" : "#e2e8f0",
-        actorBkg: prefersDark ? "#3b82f6" : "#1e40af",
-        actorBorder: prefersDark ? "#60a5fa" : "#3b82f6",
-        actorTextColor: prefersDark ? "#f1f5f9" : "#ffffff",
-        actorLineColor: prefersDark ? "#60a5fa" : "#3b82f6",
-        signalColor: prefersDark ? "#60a5fa" : "#3b82f6",
-        signalTextColor: prefersDark ? "#f1f5f9" : "#1e293b",
-        labelBoxBkgColor: prefersDark ? "#334155" : "#e2e8f0",
-        labelBoxBorderColor: prefersDark ? "#475569" : "#cbd5e1",
-        labelTextColor: prefersDark ? "#f1f5f9" : "#1e293b",
-        loopTextColor: prefersDark ? "#f1f5f9" : "#1e293b",
-        noteBkgColor: prefersDark ? "#1e293b" : "#fef3c7",
-        noteTextColor: prefersDark ? "#f1f5f9" : "#92400e",
-        noteBorderColor: prefersDark ? "#475569" : "#fcd34d"
+        primaryColor: "#f5f5f4",
+        primaryTextColor: "#0d0d0d",
+        primaryBorderColor: "#0d0d0d",
+        lineColor: "#757575",
+        secondaryColor: "#ffffff",
+        tertiaryColor: "#f5f5f4",
+        background: "#ffffff",
+        mainBkg: "#f5f5f4",
+        secondBkg: "#f5f5f4",
+        textColor: "#0d0d0d",
+        nodeTextColor: "#0d0d0d",
+        clusterBkg: "#f5f5f4",
+        clusterBorder: "#757575",
+        defaultLinkColor: "#757575",
+        titleColor: "#0d0d0d",
+        edgeLabelBackground: "#ffffff",
+        actorBkg: "#f5f5f4",
+        actorBorder: "#0d0d0d",
+        actorTextColor: "#0d0d0d",
+        actorLineColor: "#757575",
+        signalColor: "#e30613",
+        signalTextColor: "#0d0d0d",
+        labelBoxBkgColor: "#f5f5f4",
+        labelBoxBorderColor: "#0d0d0d",
+        labelTextColor: "#0d0d0d",
+        loopTextColor: "#0d0d0d",
+        noteBkgColor: "#fef3c7",
+        noteTextColor: "#92400e",
+        noteBorderColor: "#fcd34d"
       },
-      flowchart: {
-        useMaxWidth: true,
-        htmlLabels: true,
-        curve: "basis"
-      },
-      sequence: {
-        useMaxWidth: true,
-        diagramMarginX: 50,
-        diagramMarginY: 10,
-        actorMargin: 50,
-        width: 150,
-        height: 65,
-        boxMargin: 10,
-        boxTextMargin: 5,
-        noteMargin: 10,
-        messageMargin: 35,
-        mirrorActors: true,
-        bottomMarginAdj: 1
-      },
-      gantt: {
-        useMaxWidth: true,
-        leftPadding: 75,
-        rightPadding: 75,
-        gridLineStartPadding: 35,
-        fontSize: 16,
-        sectionFontSize: 16,
-        numberSectionStyles: 3
-      }
+      flowchart: { useMaxWidth: true, htmlLabels: true, curve: "basis" },
+      sequence: { useMaxWidth: true },
+      gantt: { useMaxWidth: true }
     });
+    // Code blocks were already parsed by Chroma; re-run mermaid on unparsed ones only.
+    mermaid.run({ querySelector: "code.language-mermaid, pre > code.language-mermaid" }).catch(() => {});
+  };
 
-    // Re-render on theme change
-    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
-      const newTheme = e.matches ? "dark" : "default";
-      mermaid.initialize({ theme: newTheme });
-      // Mermaid doesn't auto-re-render, so we'd need to manually re-render
-      // For now, user can refresh on theme change
-    });
-  });
+  apply("light");
 </script>

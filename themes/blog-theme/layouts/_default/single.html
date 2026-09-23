@@ -1,52 +1,98 @@
 {{ define "main" }}
+{{ $cat := "" }}
+{{ $catTitle := "" }}
+{{ with .Params.categories }}
+  {{ $cat = (lower (index . 0)) }}
+  {{ $catTitle = index . 0 }}
+{{ end }}
+{{ $bar := .Params.bar_color | default "#2f6f4f" }}
 
-<article class="canac-article-page">
-
-  <header class="canac-article-header">
-    {{ with .Params.categories }}
-      {{ range first 1 . }}
-        <a href="{{ $.Site.BaseURL }}/categories/{{ lower . }}/" class="canac-cat-link cat-{{ lower . }}">{{ . }}</a>
-      {{ end }}
-    {{ end }}
-    <time class="canac-article-date">{{ .Date.Format "02.01.2006" }}</time>
-
-    <h1 class="canac-article-h1">{{ .Title }}</h1>
-    {{ with .Params.subtitle }}
-      <p class="canac-article-subtitle">{{ . }}</p>
-    {{ end }}
+<article class="article-page">
+  <header class="article-header">
+    <div class="article-head-row">
+      <div>
+        <div class="article-kicker caps">
+          {{ with $cat }}<a href="{{ printf "categories/%s" $cat | absURL }}/">{{ $catTitle }}</a>{{ end }}
+          &middot; <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "02.01.2006" }}</time>
+        </div>
+        <h1>{{ .Title }}</h1>
+      </div>
+      <div class="share" role="group" aria-label="Share this post">
+        <a class="share-item" href="https://x.com/intent/post?text={{ .Title | safeURL }}&url={{ .Permalink }}" target="_blank" rel="noopener" title="Share on X" aria-label="Share on X">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932zM17.61 20.644h2.039L6.486 3.24H4.298z"/></svg>
+        </a>
+        <a class="share-item" href="https://news.ycombinator.com/submitlink?u={{ .Permalink }}&t={{ .Title | safeURL }}" target="_blank" rel="noopener" title="Share on Hacker News" aria-label="Share on Hacker News">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M0 24V0h24v24H0zM6.951 5.896l4.112 7.708v5.064h1.583v-4.972l4.148-7.799h-1.749l-2.457 4.875c-.372.745-.688 1.434-.688 1.434s-.297-.708-.651-1.434L8.831 5.896h-1.88z"/></svg>
+        </a>
+        <a class="share-item" href="https://bsky.app/intent/compose?text={{ .Title | safeURL }}%20{{ .Permalink }}" target="_blank" rel="noopener" title="Share on Bluesky" aria-label="Share on Bluesky">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 10.8c-1.087-2.114-4.046-6.053-6.798-7.995C2.566.944 1.56 2.074 1.56 3.655c0 1.35.866 3.002 1.753 4.183.92 1.243 2.05 2.323 3.14 2.323.505.0.81-.23.98-.56-.313.04-.602.06-.857.06-1.88.0-3.42-1.55-3.42-3.42.0-1.6 1.09-2.95 2.57-3.32-.29-.04-.59-.06-.89-.06zm5.4 1.09c-1.64.0-2.97 1.34-2.97 2.99.0 1.65 1.33 2.99 2.97 2.99 1.64.0 2.97-1.34 2.97-2.99.0-1.65-1.33-2.99-2.97-2.99z"/></svg>
+        </a>
+        <button class="share-item share-copy" type="button" title="Copy link" aria-label="Copy link" data-url="{{ .Permalink }}">
+          <svg class="icon-link" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 15l6-6M7.5 12l-2.75 2.75a3.89 3.89.0 005.5 5.5L13 17.5M16.5 12l2.75-2.75a3.89 3.89.0 00-5.5-5.5L11 6.5"/></svg>
+          <svg class="icon-check" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12.5l6 6L20 6"/></svg>
+        </button>
+      </div>
+    </div>
+    {{ with .Params.subtitle }}<p class="article-subtitle">{{ . }}</p>{{ end }}
   </header>
 
-  <div class="canac-article-body">
-    {{ .Content }}
+  <div class="article-grid">
+    <aside class="article-rail">
+      <div class="rail-block">
+        <div class="rail-label caps">Date</div>
+        <div class="rail-value">{{ .Date.Format "02.01.2006" }}</div>
+      </div>
+      {{ with $cat }}
+      <div class="rail-block">
+        <div class="rail-label caps">Category</div>
+        <div class="rail-value"><span class="category-swatch" style="background:{{ $bar }}"></span><a href="{{ printf "categories/%s" $cat | absURL }}/">{{ $catTitle }}</a></div>
+      </div>
+      {{ end }}
+      <div class="rail-block">
+        <div class="rail-label caps">Reading</div>
+        <div class="rail-value">{{ .ReadingTime }} min</div>
+      </div>
+      {{ with .Params.tags }}
+      <div class="rail-block">
+        <div class="rail-label caps">Tags</div>
+        <div class="rail-value rail-tags">{{ delimit . " &middot; " }}</div>
+      </div>
+      {{ end }}
+      <div class="rail-block rail-toc">
+        <div class="rail-label caps">Contents</div>
+        {{ .TableOfContents }}
+      </div>
+    </aside>
+    <main class="prose" data-pagefind-body>
+      {{ .Content }}
+    </main>
   </div>
 
-  {{/* Prev / Next navigation (blog.can.ac style) */}}
-  <div class="canac-nav-links">
-    {{ with .PrevInSection }}
-      <a href="{{ .RelPermalink }}" class="canac-nav canac-nav-prev">
-        <span class="canac-nav-arrow">&larr;</span>
-        {{ .Title }}
+  <div class="article-extras">
+    <nav class="post-nav" aria-label="Article navigation">
+      {{ with .NextInSection }}
+      <a href="{{ .RelPermalink }}" class="post-nav-item">
+        <span class="post-nav-label caps">&larr; Previous</span>
+        <span class="post-nav-title">{{ .Title }}</span>
       </a>
-    {{ end }}
-    {{ with .NextInSection }}
-      <a href="{{ .RelPermalink }}" class="canac-nav canac-nav-next">
-        {{ .Title }}
-        <span class="canac-nav-arrow">&rarr;</span>
+      {{ end }}
+      {{ with .PrevInSection }}
+      <a href="{{ .RelPermalink }}" class="post-nav-item post-nav-next">
+        <span class="post-nav-label caps">Next &rarr;</span>
+        <span class="post-nav-title">{{ .Title }}</span>
       </a>
-    {{ end }}
-  </div>
-
-  {{/* Author bio */}}
-  <div class="canac-author-bio">
-    {{ with site.Params.author.avatar }}
-      <img src="{{ . }}" alt="avatar" class="canac-avatar">
-    {{ end }}
-    <div class="canac-author-info">
-      <div class="canac-author-name">{{ site.Params.author.name }}</div>
-      <div class="canac-author-desc">{{ site.Params.author.description }}</div>
+      {{ end }}
+    </nav>
+    <div class="author-box">
+      {{ with site.Params.author.avatar }}
+      <img src="{{ . }}" alt="{{ site.Params.author.name }}" class="author-box-avatar">
+      {{ end }}
+      <div>
+        <h3 class="author-box-name">{{ site.Params.author.name }}</h3>
+        <p class="author-box-bio">{{ site.Params.author.description }}</p>
+      </div>
     </div>
   </div>
-
 </article>
 
 {{ end }}

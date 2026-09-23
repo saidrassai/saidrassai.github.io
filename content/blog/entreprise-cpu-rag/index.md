@@ -6,6 +6,7 @@ categories = ["RAG"]
 subtitle = "Comprehensive Technical Reference for Lattice Finance RAG System"
 tech_meta = "CPU-ONLY / BGE-M3 + SPLADEv3 + COLBERT-v2 / FINANCEBENCH 8K"
 math = false
+mermaid = true
 +++
 
 This post documents the end-to-end thinking behind reproducing a Fin-R1-style financial reasoning dataset, and what that implies for building a finance agent that can answer questions with genuine chain-of-thought reasoning instead of backward-engineered justifications.

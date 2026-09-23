@@ -1,16 +1,7 @@
-<div class="canac-author-bio">
-  {{ with site.Params.author.avatar }}
-    <img src="{{ . }}" alt="avatar" class="canac-avatar">
-  {{ end }}
-  <div class="canac-author-info">
-    <div class="canac-author-name">{{ site.Params.author.name }}</div>
-    <div class="canac-author-desc">{{ site.Params.author.description }}</div>
-  </div>
-</div>
-
-<div class="canac-footer-bottom">
-  <span class="canac-permalink">
-    <a href="{{ .Permalink }}">Permalink</a>
+<footer class="site-footer caps">
+  <span>&copy; {{ now.Year }} {{ site.Params.author.name }}</span>
+  <span>
+    <a href="{{ "index.xml" | absURL }}">RSS</a>
+    {{ with site.Params.social }}{{ range . }} / <a href="{{ .url }}" target="_blank" rel="noopener">{{ .name }}</a>{{ end }}{{ end }}
   </span>
-  <span class="canac-copyright">&copy; {{ now.Year }} {{ site.Params.author.name }}</span>
-</div>
+</footer>
