@@ -22,7 +22,7 @@
         <rect x="0" y="0" width="588" height="420" fill="#fff"/>
         <text x="44" y="60" font-family="'JetBrains Mono', 'SF Mono', monospace" font-size="13" letter-spacing="1.6" fill="#757575">{{ printf "NO. %02d" (sub (len site.RegularPages) $index) }}</text>
         <line x1="44" y1="80" x2="544" y2="80" stroke="#0d0d0d" stroke-width="1.5" opacity=".25"/>
-        <text x="44" y="180" font-family="Archivo, 'Inter', sans-serif" font-weight="800" font-size="42" letter-spacing="-1.5" fill="#0d0d0d">{{ $page.Title | truncate 26 "" }}</text>
+        <text x="44" y="180" font-family="Archivo, 'Inter', sans-serif" font-weight="800" font-size="42" letter-spacing="-1.5" fill="#0d0d0d"{{ if gt (len $page.Title) 22 }} textLength="500" lengthAdjust="spacingAndGlyphs"{{ end }}>{{ $page.Title | truncate 26 "" }}</text>
         {{ with $page.Params.tech_meta }}
         <text x="44" y="220" font-family="'JetBrains Mono', 'SF Mono', monospace" font-size="11" letter-spacing="1.2" fill="#757575">{{ . | truncate 44 "" }}</text>
         {{ end }}
