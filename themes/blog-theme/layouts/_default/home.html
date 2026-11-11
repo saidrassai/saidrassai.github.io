@@ -11,8 +11,11 @@
 <section class="plate" aria-label="Article plates">
   {{/* Holes pad the grid to a whole row (4-col); the ink background paints the
      hairlines, so surplus slots would show as black. */}}
-{{ range $index, $page := first 7 site.RegularPages }}
-  {{ if eq $index (mod (add 8 (mod (sub 0 (len site.RegularPages)) 4)) 4) }}<span class="plate-hole" aria-hidden="true"></span>{{ end }}
+{{ $pages := first 7 site.RegularPages }}
+{{ $count := len $pages }}
+{{ $remainder := mod $count 4 }}
+{{ $holes := cond (eq $remainder 0) 0 (sub 4 $remainder) }}
+{{ range $index, $page := $pages }}
   <a class="plate-cell" href="{{ $page.RelPermalink }}" style="--bar:{{ $page.Params.bar_color | default "#0d5c38" }}">
     <span class="plate-art">
       <svg viewBox="0 0 588 420" width="588" height="420" role="img" aria-hidden="true">
@@ -32,6 +35,7 @@
     </span>
   </a>
   {{ end }}
+  {{ if gt $holes 0 }}{{ range seq $holes }}<span class="plate-hole" aria-hidden="true"></span>{{ end }}{{ end }}
 </section>
 
 <section class="index-rows" aria-label="Article index">
